@@ -1,34 +1,1041 @@
-# 🐶 Lizlica Estética Animal
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lizlica - Estética Animal | São Carlos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-Este projeto consiste em um site institucional desenvolvido para a **Lizlica Estética Animal**, com o objetivo de apresentar serviços de banho e tosa, atrair novos clientes e facilitar o contato direto via WhatsApp.
+        :root {
+            --primary-color: #ff6b9d;
+            --secondary-color: #c44569;
+            --accent-color: #f8b500;
+            --text-dark: #2c3e50;
+            --text-light: #ffffff;
+            --bg-light: #fff5f7;
+        }
 
-## 🚀 Objetivo
+        html {
+            scroll-behavior: smooth;
+        }
 
-Criar uma presença digital profissional para o negócio, aumentando a visibilidade online e melhorando a comunicação com os clientes.
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
 
-## 💻 Tecnologias Utilizadas
+        /* ===== HEADER ===== */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-light);
+            padding: 0.8rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.15);
+        }
 
-- HTML5
-- CSS3
-- Design Responsivo
-- Integração com WhatsApp
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
 
-## 📱 Funcionalidades
+        /* Logo */
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: var(--text-light);
+            z-index: 1002;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-- Apresentação da empresa
-- Listagem de serviços (banho, tosa, cuidados especiais)
-- Botão de contato direto via WhatsApp
-- Layout responsivo para celular e desktop
-- Interface moderna e intuitiva
+        /* Navegação */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+            margin: 0 auto;
+        }
 
-## 📸 Layout
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
 
-O site foi desenvolvido com foco em:
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-color);
+        }
 
-- Experiência do usuário (UX)
-- Design limpo e profissional
-- Facilidade de navegação
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s;
+        }
 
-## 🔗 Acesso ao Projeto
+        .nav-links a:hover::after {
+            width: 100%;
+        }
 
-Você pode acessar o projeto online (caso publique):
+        /* ===== 📸 FOTO DA PROPRIETÁRIA + CONTATO - CANTO DIREITO ===== */
+        .owner-photo-container {
+            position: absolute;
+            top: 50%;
+            right: 25px;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1001;
+        }
+
+        .owner-photo {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .owner-photo:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+
+        .owner-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 25px;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .contact-link:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .contact-link i {
+            font-size: 1.1rem;
+        }
+
+        .owner-photo-container::after {
+            content: 'Proprietária';
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(255,255,255,0.95);
+            color: var(--text-dark);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+            margin-top: 5px;
+            font-weight: 500;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+        }
+
+        .owner-photo-container:hover::after {
+            opacity: 1;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            z-index: 1002;
+            color: white;
+        }
+
+        /* ===== HERO SECTION - CENTRALIZADO ===== */
+        .hero {
+            margin-top: 85px;
+            background: linear-gradient(135deg, var(--bg-light), #ffe0e6);
+            padding: 4rem 0;
+            text-align: center;
+            scroll-margin-top: 85px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            text-align: center;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25d366;
+            color: white;
+            padding: 1rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+        }
+
+        /* ===== INFO BAR - CENTRALIZADO ===== */
+        .info-bar {
+            background: var(--text-dark);
+            color: var(--text-light);
+            padding: 2.5rem 0;
+            scroll-margin-top: 85px;
+            text-align: center;
+        }
+
+        .info-bar .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            justify-content: center;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .info-item i {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 0.8rem;
+        }
+
+        .info-item h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .info-item p,
+        .info-item a {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .info-item a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .info-item a:hover {
+            color: var(--accent-color);
+        }
+
+        /* ===== SERVICES SECTION - CENTRALIZADO ===== */
+        .services {
+            padding: 4rem 0;
+            background: white;
+            scroll-margin-top: 85px;
+            text-align: center;
+        }
+
+        .services .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.3rem;
+            margin-bottom: 3rem;
+            color: var(--secondary-color);
+            position: relative;
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            justify-content: center;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border: 3px solid transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-color);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-dark);
+        }
+
+        .service-card p {
+            color: var(--text-dark);
+            opacity: 0.9;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        .price span {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-weight: normal;
+            opacity: 0.8;
+        }
+
+        /* ===== GALLERY SECTION - CENTRALIZADO ===== */
+        .gallery {
+            padding: 4rem 0;
+            background: var(--bg-light);
+            scroll-margin-top: 85px;
+            text-align: center;
+        }
+
+        .gallery .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.2rem;
+            justify-content: center;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            height: 280px;
+            cursor: pointer;
+            margin: 0 auto;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.12);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            color: white;
+            padding: 1.2rem 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay p {
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* ===== SOCIAL MEDIA - CENTRALIZADO ===== */
+        .social-section {
+            padding: 3.5rem 0;
+            background: white;
+            scroll-margin-top: 85px;
+            text-align: center;
+        }
+
+        .social-section .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .social-section p {
+            color: var(--text-dark);
+            opacity: 0.9;
+            margin-top: 0.5rem;
+            text-align: center;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.4rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .facebook { background: #3b5998; }
+        .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .tiktok { background: #000000; }
+
+        /* ===== FOOTER - CENTRALIZADO ===== */
+        footer {
+            background: var(--text-dark);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2.5rem 0 2rem;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        footer p {
+            margin: 0.4rem 0;
+            opacity: 0.95;
+            text-align: center;
+        }
+
+        footer p:first-child {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+        }
+
+        /* ===== WHATSAPP FLOAT ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25d366;
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .owner-photo-container {
+                right: 15px;
+                gap: 8px;
+            }
+            
+            .owner-photo {
+                width: 48px;
+                height: 48px;
+            }
+            
+            .contact-link {
+                font-size: 0.85rem;
+                padding: 6px 12px;
+            }
+            
+            .contact-link span {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .owner-photo-container {
+                right: 12px;
+            }
+            
+            .owner-photo {
+                width: 42px;
+                height: 42px;
+                border-width: 2px;
+            }
+            
+            .owner-photo-container::after {
+                display: none;
+            }
+            
+            .contact-link {
+                padding: 6px 10px;
+            }
+            
+            .hero {
+                margin-top: 75px;
+                padding: 3rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .services-grid,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                justify-items: center;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .owner-photo {
+                width: 38px;
+                height: 38px;
+            }
+            
+            .contact-link {
+                width: 36px;
+                height: 36px;
+                padding: 0;
+                border-radius: 50%;
+                justify-content: center;
+            }
+            
+            .contact-link span {
+                display: none;
+            }
+            
+            .cta-button {
+                padding: 0.9rem 1.8rem;
+                font-size: 1rem;
+            }
+        }
+
+        /* Menu Mobile */
+        .nav-links.mobile-active {
+            display: flex !important;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            flex-direction: column;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 1.5rem 2rem;
+            gap: 1rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-links.mobile-active a {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .nav-links.mobile-active a:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#inicio" class="logo">
+                <i class="fas fa-paw"></i>Lizlica
+            </a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#galeria">Galeria</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            
+            <div class="mobile-menu" id="mobileMenu">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <!-- Foto + Link Contato no Canto Superior Direito -->
+            <div class="owner-photo-container">
+                <a href="https://wa.me/5516992415667?text=Olá! Gostaria de mais informações." 
+                   class="contact-link" 
+                   target="_blank"
+                   title="Fale conosco">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Contato</span>
+                </a>
+                <div class="owner-photo" title="Proprietária">
+                    <img src="WhatsApp Image 2026-03-16 at 13.07.41.jpeg" alt="Proprietária Lizlica" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop'">
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section - CENTRALIZADO -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h1><i class="fas fa-heart"></i> Lizlica - Estética Animal</h1>
+            <p>Cuidado, carinho e profissionalismo para seu melhor amigo em São Carlos-SP</p>
+            <a href="https://wa.me/5516992415667?text=Olá! Gostaria de agendar um horário para meu pet." 
+               class="cta-button" 
+               target="_blank">
+                <i class="fab fa-whatsapp"></i>Agende Agora
+            </a>
+        </div>
+    </section>
+
+    <!-- Info Bar - CENTRALIZADO: Endereço | Telefone | Horário -->
+    <section class="info-bar" id="contato">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>📍 Endereço</h3>
+                    <p>Rua José Favoretto, 216<br>Jd. Hikare - São Carlos/SP</p>
+                </div>
+                <div class="info-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>📱 Telefone</h3>
+                    <a href="https://wa.me/5516992415667?text=Olá! Gostaria de mais informações." target="_blank">
+                        (16) 99241-5667
+                    </a>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>🕒 Horário</h3>
+                    <p>Seg a Sex: 8h às 18h Sáb: 8h às 12h</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section - CENTRALIZADO -->
+    <section class="services" id="servicos">
+        <div class="container">
+            <h2 class="section-title">✨ Nossos Serviços ✨</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-shower"></i>
+                    <h3>Banho</h3>
+                    <p>Banho completo com shampoo e condicionador de qualidade, secagem e escovação.</p>
+                    <div class="price">R$ 50,00<span>/a partir de</span></div>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-cut"></i>
+                    <h3>Banho + Tosa higiênica</h3>
+                    <p>Pacote completo com banho, tosa higiênica.</p>
+                    <div class="price">R$ 65,00<span>/a partir de</span></div>
+                </div>
+                 <div class="service-card">
+                    <i class="fas fa-cut"></i>
+                    <h3>Banho + Tosa</h3>
+                    <p>Pacote completo com banho, tosa completa ou conforme sua preferência.</p>
+                    <div class="price">R$ 80,00<span>/a partir de</span></div>
+                </div>
+                
+
+                <div class="service-card">
+                    <i class="fas fa-spa"></i>
+                    <h3>Tosa na Tesoura</h3>
+                    <p>Tosa especializada na tesoura para raças que exigem acabamento premium.</p>
+                    <div class="price">R$ 130,00<span>/a partir de</span></div>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-paw"></i>
+                    <h3>Hidratação</h3>
+                    <p>Com mascaras hidratantes de qualidade de acordo com a pelagem .</p>
+                    <div class="price">R$ 25,00<span>/a partir de</span></div>
+                </div>
+
+                
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section - CENTRALIZADO -->
+    <section class="gallery" id="galeria">
+        <div class="container">
+            <h2 class="section-title">🐾 Nossos Trabalhos 🐾</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=400&h=400&fit=crop" alt="Cachorro após banho">
+                    <div class="gallery-overlay"><p>🐕 Golden Retriever - Banho Completo</p></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://p2.trrsf.com/image/fget/cf/774/0/images.terra.com/2023/05/15/1736385350-tosa-leao-poodle.jpg" alt="Cachorro tosado">
+                    <div class="gallery-overlay"><p>🐩 Poodle - Tosa Completa</p></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://guia4patasonline.com.br/wp-content/uploads/2016/03/shih-tzu-850x560.jpg" alt="Cachorro feliz">
+                    <div class="gallery-overlay"><p>🦮 Shih Tzu - Banho e Tosa</p></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400&h=400&fit=crop" alt="Cachorro feliz">
+                    <div class="gallery-overlay"><p>🦮 Buldogue Francês - Banho e Tosa</p></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://portaledicase.com/wp-content/uploads/2024/07/Shih-tzu.jpg" alt="Cachorro feliz">
+                    <div class="gallery-overlay"><p>🦮 Shih Tzu - Banho e Tosa</p></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1535930749574-1399327ce78f?w=400&h=400&fit=crop" alt="Cachorro limpo">
+                    <div class="gallery-overlay"><p>🐕 Yorkshire - Hidratação</p></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=400&h=400&fit=crop" alt="Cachorro após tosa">
+                    <div class="gallery-overlay"><p>🐕 Lhasa Apso - Tosa na Tesoura</p></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?w=400&h=400&fit=crop" alt="Cachorro bem cuidado">
+                    <div class="gallery-overlay"><p>🦊 Spitz Alemão - Banho Especial</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Section - CENTRALIZADO -->
+    <section class="social-section">
+        <div class="container">
+            <h2 class="section-title">💙 Siga-nos 💙</h2>
+            <p>Acompanhe nosso trabalho e fique por dentro das novidades!</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/share/1DsbwusoYd/?mibextid=wwXIfr" target="_blank" class="facebook" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/lizlica_esteticaanimal?igsh=YXZtZnM0aXE3anFl" target="_blank" class="instagram" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.tiktok.com/@lizlica.esteticaanimal?_r=1&_t=ZS-94lU3QszHSG" target="_blank" class="tiktok" title="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - CENTRALIZADO -->
+    <footer>
+        <div class="container">
+            <p><i class="fas fa-paw"></i> Lizlica - Estética Animal</p>
+            <p>📍 Rua José Favoretto, 216 - Jd. Hikare - São Carlos/SP</p>
+            <p>📱 Tel: (16) 99241-5667</p>
+            <p style="margin-top: 1rem; opacity: 0.8; font-size: 0.9rem;">&copy; 2026 Lizlica. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5516992415667?text=Olá! Vim pelo site e gostaria de agendar um horário." 
+       class="whatsapp-float" 
+       target="_blank" 
+       title="Fale conosco pelo WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // ===== Scroll Suave =====
+        function smoothScroll(targetId) {
+            const target = document.querySelector(targetId);
+            if (!target) return;
+            
+            const headerOffset = 85;
+            const elementPosition = target.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            const startPosition = window.pageYOffset;
+            const distance = offsetPosition - startPosition;
+            const duration = 1200;
+            let start = null;
+
+            function easeInOutCubic(t) {
+                return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+            }
+
+            function animation(currentTime) {
+                if (start === null) start = currentTime;
+                const timeElapsed = currentTime - start;
+                const progress = Math.min(timeElapsed / duration, 1);
+                const ease = easeInOutCubic(progress);
+                
+                window.scrollTo(0, startPosition + distance * ease);
+                
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            }
+            requestAnimationFrame(animation);
+            
+            if (window.innerWidth <= 992) {
+                document.getElementById('navLinks').classList.remove('mobile-active');
+            }
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                smoothScroll(this.getAttribute('href'));
+            });
+        });
+
+        // ===== Menu Mobile =====
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenu.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navLinks.classList.toggle('mobile-active');
+            const icon = mobileMenu.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 992 && 
+                !e.target.closest('nav') && 
+                navLinks.classList.contains('mobile-active')) {
+                navLinks.classList.remove('mobile-active');
+                const icon = mobileMenu.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 992) {
+                    navLinks.classList.remove('mobile-active');
+                    const icon = mobileMenu.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+
+        // ===== Link Ativo no Scroll =====
+        const sections = document.querySelectorAll('section[id]');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                if (pageYOffset >= section.offsetTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
